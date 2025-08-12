@@ -1,0 +1,25 @@
+name: ci
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install
+        run: pip install nbformat
+      - name: Validate notebooks open
+        run: |
+          python - <<'PY'
+          import nbformat as nbf, glob
+          for p in glob.glob('notebooks/*.ipynb'):
+              nbf.read(p, as_version=4)
+              print('OK', p)
+          PY

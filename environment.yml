@@ -1,0 +1,16 @@
+name: care-cost-predictor
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - streamlit
+      - pandas
+      - numpy
+      - scikit-learn
+      - xgboost
+      - shap
+      - matplotlib
+      - joblib
+      - plotly
